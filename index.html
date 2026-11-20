@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="referrer" content="no-referrer">
+<title>Where is Rhea?</title>
+<meta property="og:title" content="Where is Rhea?">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://whereis.rheapradeep.com/">
+<meta property="og:image" content="https://whereis.rheapradeep.com/__OG__">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><circle cx='8' cy='8' r='6' fill='none' stroke='%2337622f' stroke-width='2'/></svg>">
+<link rel="preload" href="fonts/clauthbound.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+  @font-face { font-family: 'Clauthbound'; src: url('fonts/clauthbound.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+  @font-face { font-family: 'Shantell Sans'; src: url('fonts/shantell.woff2') format('woff2'); font-weight: 300 800; font-display: swap; }
+
+  /* the riso palette from rheapradeep.com */
+  :root {
+    --paper: oklch(1 0 0);
+    --ink: oklch(0.212 0.004 60);
+    --ink-2: oklch(0.478 0.006 60);
+    --rule: oklch(0.888 0.009 82);
+    --brand: oklch(0.442 0.086 141);
+    --hand: 'Shantell Sans', cursive;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { height: 100%; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    display: grid;
+    place-items: center;
+    padding: 24px 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Two columns that size to their content: a margin note, then the block.
+     Everything in the block takes its width from the word. */
+  main {
+    --size: clamp(64px, min(19vw, 24vh), 200px);
+    display: grid;
+    grid-template-columns: auto;
+    visibility: hidden;
+  }
+  main.in { visibility: visible; }
+
+  .q {
+    justify-self: start;
+    margin: 0 0 calc(var(--size) * .1) .06em;
+    rotate: -3deg;
+    font-family: var(--hand);
+    font-weight: 500;
+    font-size: clamp(20px, 2vw + 12px, 28px);
+    color: var(--ink);
+  }
+
+  /* #card: the 1200x630 share image the build screenshots */
+  html.card body { width: 1200px; height: 630px; padding: 0; overflow: hidden; }
+  html.card main { --size: 200px; }
+  html.card .q { font-size: 34px; }
+  html.card .note { font-size: 30px; }
+  html.card .arrow { width: 18px; height: 34px; margin-left: calc(var(--p) * 1% - 9px); }
+  html.card .trip { height: 16px; }
+  html.card :is(.track, .togo) { stroke-width: 3.2; }
+  html.card .now { r: 6px; }
+
+  /* question, word, line, note: one column as wide as the word */
+  .word { position: relative; }
+
+  .a {
+    font-family: 'Clauthbound', Georgia, serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: var(--size);
+    line-height: .86;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    user-select: none;
+    cursor: default;
+  }
+  .a span { display: block; }
+
+  /* the frank, struck over the word's top-right corner */
+  .frank {
+    position: absolute;
+    right: calc(var(--size) * -.42);
+    top: calc(var(--size) * -.42);
+    width: calc(var(--size) * .82);
+    rotate: -14deg;
+    color: var(--brand);
+    pointer-events: none;
+    mix-blend-mode: multiply;
+  }
+  .before .frank { color: var(--rule); }
+  .before .frank :is(.bars, .inner, .lines) { display: none; }
+  .before .frank .outer { stroke-dasharray: 4 6; }
+  .here .frank { opacity: .9; }
+  .after .frank { opacity: .3; rotate: -9deg; }
+
+  /* the journey: exactly as wide as the word */
+  .trip { display: block; width: 0; min-width: 100%; height: 12px; margin-top: calc(var(--size) * .14); overflow: visible; }
+  .track { stroke: var(--rule); }
+  .togo { stroke: var(--brand); }
+  .now { fill: var(--ink); }
+  .here .now { fill: var(--brand); }
+  .after .now { fill: var(--ink-2); }
+
+  /* the note hangs off wherever the dot is headed, clamped inside the word's width */
+  .pin {
+    --p: 0;
+    position: relative;
+    margin-top: 4px;
+    inline-size: 100%;
+  }
+  .arrow {
+    display: block;
+    width: 14px; height: 26px;
+    margin-left: calc(var(--p) * 1% - 7px);
+    color: var(--brand);
+  }
+  .note {
+    display: block;
+    width: max-content;
+    margin-top: 2px;
+    margin-left: calc(var(--p) * 1%);
+    translate: calc(var(--p) * -1%) 0;
+    rotate: -2deg;
+    font-family: var(--hand);
+    font-size: clamp(16px, 1.4vw + 11px, 21px);
+    color: var(--brand);
+  }
+</style>
+</head>
+<body>
+<main>
+  <p class="q">in india?</p>
+  <div class="word">
+    <p class="a" id="a">&nbsp;</p>
+    <svg class="frank" viewBox="0 0 130 72" fill="none" aria-hidden="true">
+      <g stroke="currentColor" stroke-linecap="round">
+        <circle class="outer" cx="36" cy="36" r="31" stroke-width="2"/>
+        <circle class="inner" cx="36" cy="36" r="24.5" stroke-width="1.2"/>
+        <path class="lines" d="M22 30h28M22 36h28M22 42h20" stroke-width="1.2" opacity=".75"/>
+        <g class="bars" stroke-width="2.4">
+          <path d="M68 22q7-6 14 0t14 0 14 0 14 0"/>
+          <path d="M68 32q7-6 14 0t14 0 14 0 14 0"/>
+          <path d="M68 42q7-6 14 0t14 0 14 0 14 0"/>
+          <path d="M68 52q7-6 14 0t14 0 14 0 14 0"/>
+        </g>
+      </g>
+    </svg>
+  </div>
+
+    <!-- green is what's still to go; the dot is now -->
+    <svg class="trip" id="trip" fill="none" aria-hidden="true" preserveAspectRatio="none">
+      <path class="track" id="track" stroke-width="1.6" stroke-linecap="round" pathLength="100" vector-effect="non-scaling-stroke"/>
+      <path class="togo" id="togo" stroke-width="1.6" stroke-linecap="round" pathLength="100" vector-effect="non-scaling-stroke"/>
+      <circle class="now" id="now" r="3.2"/>
+    </svg>
+
+    <div class="pin" id="pin">
+      <svg class="arrow" viewBox="0 0 14 26" fill="none" aria-hidden="true">
+        <path d="M7.5 25c-1.6-6.5 1.2-12.8-.4-21M2.8 8.2 7 3.4l4.4 4.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <p class="note" id="n">&nbsp;</p>
+    </div>
+</main>
+<script>
+  var CARD = location.hash === '#card';
+  if (CARD) document.documentElement.className = 'card';
+  // the window; filled in at deploy from the ARRIVE / LEAVE repo variables (see build.sh)
+  var A = Date.parse('__ARRIVE__'), B = Date.parse('__LEAVE__'), DAY = 864e5, LEAD = 60 * DAY;
+  var words = { before: ['not', 'yet.'], here: ['yes.'], after: ['nope.'] };
+  var ist = new Intl.DateTimeFormat('en-IN', { timeZone: 'Asia/Kolkata', hour: 'numeric', minute: '2-digit', hour12: true });
+
+  function state(t) { return t < A ? 'before' : t < B ? 'here' : 'after'; }
+
+  // how far along the line "now" sits, 0..100
+  function progress(t) {
+    var k = state(t);
+    if (k === 'before') return 100 * Math.max(0, 1 - (A - t) / LEAD);
+    if (k === 'here') return 100 * (t - A) / (B - A);
+    return 100;
+  }
+
+  function note(t) {
+    var k = state(t);
+    if (k === 'here') return CARD ? 'go say hi.' : 'it’s ' + ist.format(t).toLowerCase() + ' here.';
+    if (k === 'after') return 'until next time.';
+    var d = (A - t) / DAY;
+    return d > 30 ? 'a while yet.' : d > 10 ? 'soon.' : d > 2 ? 'very soon.' : 'any minute now.';
+  }
+
+  var main = document.querySelector('main'), a = document.getElementById('a'),
+      n = document.getElementById('n'), pin = document.getElementById('pin'),
+      trip = document.getElementById('trip'), track = document.getElementById('track'),
+      togo = document.getElementById('togo'), dot = document.getElementById('now');
+  var len = 0, shown = 0, hold = false, mode = '';
+
+  // a wave drawn to whatever width the word turned out to be
+  function draw() {
+    var w = trip.clientWidth, h = 12, step = 9, x = 3;
+    trip.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+    var d = 'M' + x + ' 6q' + step / 2 + '-4 ' + step + ' 0';
+    for (x += step; x + step <= w - 3; x += step) d += 't' + step + ' 0';
+    track.setAttribute('d', d); togo.setAttribute('d', d);
+    len = track.getTotalLength();
+  }
+
+  function place(p) {
+    togo.style.strokeDasharray = (100 - p) + ' 200';
+    togo.style.strokeDashoffset = -p;
+    var pt = track.getPointAtLength(len * p / 100);
+    dot.setAttribute('cx', pt.x); dot.setAttribute('cy', pt.y);
+  }
+
+  // the one thing that moves: the dot walks from the start to now, once
+  function walk(to) {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) { place(shown = to); return; }
+    var from = shown, t0 = performance.now();
+    (function step(now) {
+      var k = Math.min(1, (now - t0) / 1400), e = 1 - Math.pow(1 - k, 3);
+      place(shown = from + (to - from) * e);
+      if (k < 1) requestAnimationFrame(step);
+    })(t0);
+  }
+
+  function render(first) {
+    if (hold) return;
+    var t = Date.now(), k = state(t), p = progress(t);
+    if (k !== mode) {
+      mode = k;
+      main.className = k + ' in';
+      a.innerHTML = words[k].map(function (w) { return '<span>' + w + '</span>'; }).join('');
+      draw();
+    }
+    togo.style.display = k === 'after' ? 'none' : '';
+    pin.style.setProperty('--p', p);
+    n.textContent = note(t);
+    first && !CARD ? walk(p) : place(shown = p);
+    if (CARD) document.body.dataset.ready = '1';
+  }
+
+  // keep poking it and it answers back
+  var taps = 0;
+  a.addEventListener('click', function () {
+    if (++taps % 5) return;
+    var k = state(Date.now());
+    n.textContent = k === 'here' ? 'go say hi.' : k === 'before' ? 'patience.' : 'back again, someday.';
+    hold = true;
+    setTimeout(function () { hold = false; render(); }, 2400);
+  });
+
+  addEventListener('resize', function () { draw(); place(shown); });
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(function () { render(true); });
+  setInterval(render, 30000);
+</script>
+</body>
+</html>
